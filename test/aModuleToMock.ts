@@ -9,7 +9,9 @@ export interface IUser {
 
 export const getUserById = async (userId: number): Promise<IUser> => {
     function makeRandomString(){
-        return Math.random().toString(36).substring(7);
+        const radix = 35;
+        const stringLength = 7;
+        return Math.random().toString(radix).substring(stringLength);
     }
 
     // since this is a silly example, we'll just return whatever

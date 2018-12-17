@@ -9,12 +9,14 @@
   "license": "GPL-3.0",
   "scripts": {
     "clean": "rimraf ./build && rimraf .tmp",
-    "build": "yarn clean && tsc && yarn lint &&",
-    "test": "tsc && jest"
+    "build": "yarn clean && tsc && yarn lint",
+    "lint": "tslint \"**/*.ts\" --project .",
+    "test": "jest",
+    "pre-push": "yarn build && yarn test"
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm run pre-push"
+      "pre-push": "yarn run pre-push"
     }
   },
   "devDependencies": {
