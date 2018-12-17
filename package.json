@@ -7,7 +7,7 @@
   "repository": "https://github.com/dgreene1/typeSafeJestSpy.git",
   "author": "Dan Greene",
   "license": "GPL-3.0",
-  "files": ["build/**/*"],
+  "files": ["build/src/**/*"],
   "scripts": {
     "clean": "rimraf ./build && rimraf .tmp",
     "build": "npm run clean && tsc && npm run lint",
