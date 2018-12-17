@@ -8,7 +8,7 @@ describe("typeSafeSpyWrapper", ()=>{
 
         it("where simple types can be automatically inferred", async ()=>{
             // Arrange
-            const aTypeSafeSpy = typeSafeSpyWrapper(jest.spyOn(aModuleToMock, "getUserById"), aModuleToMock.getUserById);
+            const aTypeSafeSpy = typeSafeSpyWrapper(jest.spyOn(aModuleToMock, "getUserById"));
             const expectedResult = {
                 age: 23,
                 id: 12345,
@@ -29,7 +29,7 @@ describe("typeSafeSpyWrapper", ()=>{
 
         it("but complex types might need to have their return types explicitly declared", async ()=>{
             // Arrange
-            const aTypeSafeSpy = typeSafeSpyWrapper(jest.spyOn(aModuleToMock, "getUserById"), aModuleToMock.getUserById);
+            const aTypeSafeSpy = typeSafeSpyWrapper(jest.spyOn(aModuleToMock, "getUserById"));
 
             // // We can't pass in this implicit object to our spy because it can't infer the private type for favoriteColor. It thinks it's a string...
             // //   ... "Argument of type '{ age: number; id: number; userName: string; favoriteColor: string; }' is not assignable to parameter of type 'IUser'."
@@ -63,7 +63,7 @@ describe("typeSafeSpyWrapper", ()=>{
 
         it("however, complex types can still be inferred as long as you instantiate the object in-line with the spy function", async ()=>{
             // Arrange
-            const aTypeSafeSpy = typeSafeSpyWrapper(jest.spyOn(aModuleToMock, "getUserById"), aModuleToMock.getUserById);
+            const aTypeSafeSpy = typeSafeSpyWrapper(jest.spyOn(aModuleToMock, "getUserById"));
 
             // Act
             // set up the spy to return the value just as you normally would; however, the spy function requires you to pass the correct type
@@ -89,7 +89,7 @@ describe("typeSafeSpyWrapper", ()=>{
 
         it("where simple types can be automatically inferred", async ()=>{
             // Arrange
-            const aTypeSafeSpy = typeSafeSpyWrapper(jest.spyOn(aModuleToMock, "getUserById"), aModuleToMock.getUserById);
+            const aTypeSafeSpy = typeSafeSpyWrapper(jest.spyOn(aModuleToMock, "getUserById"));
             const expectedResult = {
                 age: 23,
                 id: 12345,
