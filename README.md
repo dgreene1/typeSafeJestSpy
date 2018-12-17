@@ -1,5 +1,5 @@
 # typeSafeJestSpy
-Helps you write faster spies by automatically inferring the real implementation's type signature
+A very thing layer that helps you write faster spies by automatically inferring the real implementation's type signature
 
 # Why would you use this?
 
@@ -7,10 +7,10 @@ Helps you write faster spies by automatically inferring the real implementation'
   * Have you ever returned bad data from a spy by accident?
     * i.e. you knew that the method you were replacing was supposed to return a string... but you accidentally returned a number?
 
+Aciddental mistakes with spies are a thing of the past with typeSafeJestSpy! :)
+
 # How do you use this?
   * Please see the unit tests in the test folder for usage examples
-
-# Aciddental mistakes with spies are a thing of the past!
 
 Simply send your Jest spy into a function of this library and then the following Jest spy functions will require you to return the correct type:
   * `mockImplementation`
