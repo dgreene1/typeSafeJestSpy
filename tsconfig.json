@@ -2,7 +2,7 @@
     "compilerOptions": {
       "allowJs": false,
       "module": "commonjs",
-      "target": "ES2017",
+      "target": "es5",
       "noImplicitAny": true,
       "noImplicitThis": true,
       "noImplicitReturns": true,
@@ -15,6 +15,7 @@
       "strictFunctionTypes": false,
       "strictNullChecks": true,
       "sourceMap": true,
+      "declaration": true,
       "outDir": "./build",
       "rootDir": "./",
       "lib": ["dom", "es2017"],
