@@ -85,6 +85,87 @@ describe("typeSafeSpyWrapper", ()=>{
         });
     });
 
+    describe("allows type-safe use of Jest's mockReturnValue", ()=>{
+
+        it("where simple types can be automatically inferred", async ()=>{
+            // Arrange
+            const aTypeSafeSpy = typeSafeSpyWrapper(jest.spyOn(aModuleToMock, "aNonAsyncFunction"));
+            const expectedResult = {
+                age: 23,
+                id: 12345,
+                userName: "Mr. Nemo"
+            };
+
+            // Act
+            // set up the spy to return the value just as you normally would; however, the spy function requires you to pass the correct type
+            aTypeSafeSpy.mockReturnValue(expectedResult)
+            // call the code you want to test so you can validate that the spy returned the correct result
+            const result = await aModuleToMock.getUserById(expectedResult.id);
+
+            // Assert
+            expect(result.age).toBe(expectedResult.age);
+            expect(result.id).toBe(expectedResult.id);
+            expect(result.userName).toBe(expectedResult.userName);
+        });
+
+        it("but complex types might need to have their return types explicitly declared", async ()=>{
+            // Arrange
+            const aTypeSafeSpy = typeSafeSpyWrapper(jest.spyOn(aModuleToMock, "aNonAsyncFunction"));
+
+            // // We can't pass in this implicit object to our spy because it can't infer the private type for favoriteColor. It thinks it's a string...
+            // //   ... "Argument of type '{ age: number; id: number; userName: string; favoriteColor: string; }' is not assignable to parameter of type 'IUser'."
+            // //   ... hence why we've commented it out
+            // const expectedResult = {
+            //     age: 23,
+            //     id: 12345,
+            //     userName: "Mr. Nemo",
+            //     favoriteColor: "blue"
+            // };
+
+            // However, the explicitly declared version works just fine
+            const expectedResult : aModuleToMock.IUser = {
+                age: 23,
+                id: 12345,
+                userName: "Mr. Nemo",
+                favoriteColor: "blue"
+            };
+
+            // Act
+            // set up the spy to return the value just as you normally would; however, the spy function requires you to pass the correct type
+            aTypeSafeSpy.mockReturnValue(expectedResult)
+            // call the code you want to test so you can validate that the spy returned the correct result
+            const result = await aModuleToMock.getUserById(expectedResult.id);
+
+            // Assert
+            expect(result.age).toBe(expectedResult.age);
+            expect(result.id).toBe(expectedResult.id);
+            expect(result.userName).toBe(expectedResult.userName);
+        });
+
+        it("however, complex types can still be inferred as long as you instantiate the object in-line with the spy function", async ()=>{
+            // Arrange
+            const aTypeSafeSpy = typeSafeSpyWrapper(jest.spyOn(aModuleToMock, "aNonAsyncFunction"));
+
+            // Act
+            // set up the spy to return the value just as you normally would; however, the spy function requires you to pass the correct type
+            aTypeSafeSpy.mockReturnValue({
+                age: 23,
+                id: 12345,
+                userName: "Mr. Nemo",
+                favoriteColor: "blue"
+            });
+            // call the code you want to test so you can validate that the spy returned the correct result
+            const doesntMatterWhatIdBecauseImMockingTheResult = 4504959;
+            const result = await aModuleToMock.getUserById(doesntMatterWhatIdBecauseImMockingTheResult);
+
+            // Assert
+            expect(result.age).toBe(23);
+            expect(result.id).toBe(12345);
+            expect(result.userName).toBe("Mr. Nemo");
+            expect(result.favoriteColor).toBe("blue");
+        });
+    });
+
     describe("allows type-safe use of Jest's mockImplementation", ()=>{
 
         it("where simple types can be automatically inferred", async ()=>{

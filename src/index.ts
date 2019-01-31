@@ -9,6 +9,8 @@ export interface ITypeSafeSpy<TRealFuncImpl extends IFunction> extends jest.SpyI
     mockImplementationOnce: (mockImplFunc: TRealFuncImpl) => jest.Mock;
     mockResolvedValue: (valueToReturn: ResolvedPromise<ReturnType<TRealFuncImpl>>) => jest.Mock;
     mockResolvedValueOnce: (valueToReturn: ResolvedPromise<ReturnType<TRealFuncImpl>>) => jest.Mock;
+    mockReturnValue: (valueToReturn: ResolvedPromise<ReturnType<TRealFuncImpl>>) => jest.Mock;
+    mockReturnValueOnce: (valueToReturn: ResolvedPromise<ReturnType<TRealFuncImpl>>) => jest.Mock;
 }
 
 

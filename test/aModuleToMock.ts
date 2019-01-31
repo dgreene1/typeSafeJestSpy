@@ -22,3 +22,13 @@ export const getUserById = async (userId: number): Promise<IUser> => {
         userName: makeRandomString()
     }
 }
+
+export const aNonAsyncFunction = (userId: number): IUser => {
+    // The internals do not matter since we will be mocking the response in the test
+    return {
+        id: userId,
+        age: Math.random(),
+        favoriteColor: "blue",
+        userName: "BobSmith"
+    }
+}
