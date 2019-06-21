@@ -1,7 +1,9 @@
-# typeSafeJestSpy
+# DEPRECATED: Yay! Jest has been [rewritten in TypeScript](https://github.com/facebook/jest/commit/be2703c103b63850a7a8fc244edf8e3c7798a9f3), so you no longer need to use this library! Enjoy the beautiful types of Jest.
+
+## typeSafeJestSpy
 A _very thin_ layer that helps you write faster spies by automatically inferring the real implementation's type signature
 
-## Why would you use this?
+### Why would you use this?
 
   * Have you ever made a spy for entirely the wrong function?
   * Have you ever returned bad data from a spy by accident?
@@ -9,7 +11,7 @@ A _very thin_ layer that helps you write faster spies by automatically inferring
 
 Who would want false-positive unit tests? Accidental mistakes with spies are a thing of the past with typeSafeJestSpy! :)
 
-## How do you use this?
+### How do you use this?
   * Please see the unit tests in the test folder for usage examples
 
 Simply send your Jest spy into a function of this library and then the following Jest spy functions will require you to return the correct type:
@@ -18,7 +20,7 @@ Simply send your Jest spy into a function of this library and then the following
   * `mockResolvedValue`
   * `mockResolvedValueOnce`
 
-## Caveats
+### Caveats
 Please see the version of Jest in my package.json to see what this micro-library thinks is the way that Jest behaves. If your version of Jest is wildly different, then
 
   * you might get irregular behavior.
